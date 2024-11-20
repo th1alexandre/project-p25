@@ -29,7 +29,7 @@ RUN go build \
 
 
 # Stage 2: Final image
-FROM gcr.io/distroless/base-debian12 AS runtime
+FROM gcr.io/distroless/static-debian12 AS runtime
 
 # Set working directory
 WORKDIR /

@@ -26,3 +26,25 @@ RUN go build \
     -ldflags="-linkmode external -extldflags -static" \
     -tags netgo \
     -o go-bff
+
+
+# Stage 2: Final image
+FROM gcr.io/distroless/base-debian12 AS runtime
+
+# Set working directory
+WORKDIR /
+
+# Copy the /etc/passwd file from the build stage to provide non-root user information
+COPY --from=builder /etc/passwd /etc/passwd
+
+# Copy the compiled application binary from the builder stage to the final image
+COPY --from=builder /app/go-bff /go-bff
+
+# Use the non-root user created in the build stage
+USER nonroot
+
+# Expose the port the application will run on
+EXPOSE 8085
+
+# Define the command to run the application when the container starts
+CMD ["./go-bff"]

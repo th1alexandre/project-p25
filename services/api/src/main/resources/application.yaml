@@ -1,0 +1,40 @@
+server:
+    port: 8080
+
+spring:
+  application:
+    name: SRE Challenge
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    database: mysql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+security:
+  jwt:
+    secret-key: ${JWT_SECRET_KEY}
+    expiration-time: 86400000
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    metrics:
+      enabled: true
+      jvm:
+        enabled: true
+        exposure:
+          include: "*"
+    health:
+      show-details: always

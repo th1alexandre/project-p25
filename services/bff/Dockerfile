@@ -1,9 +1,6 @@
 # Stage 1: Build
 FROM golang:1.23-bookworm AS builder
 
-# Set the GIN_MODE environment variable to release
-ENV GIN_MODE=release
-
 # Create a non-root user for running the application
 RUN useradd -u 1001 nonroot
 
@@ -30,6 +27,9 @@ RUN go build \
 
 # Stage 2: Final image
 FROM gcr.io/distroless/static-debian12 AS runtime
+
+# Set the GIN_MODE environment variable to release
+ENV GIN_MODE=release
 
 # Set working directory
 WORKDIR /

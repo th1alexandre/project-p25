@@ -1,4 +1,20 @@
 services:
+  bff:
+    build:
+      context: services/bff
+      dockerfile: Dockerfile
+      target: runtime
+    image: go-bff:1.0.0
+    links:
+      - api
+    environment:
+      - PORT=${PORT}
+      - API_URL=${API_URL}
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+    ports:
+      - 8085:8085
+
   api:
     build:
       context: services/api

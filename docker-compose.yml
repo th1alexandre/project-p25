@@ -5,6 +5,9 @@ services:
       dockerfile: Dockerfile
       target: runtime
     image: go-bff:1.0.0
+    depends_on:
+      api:
+        condition: service_healthy
     links:
       - api
     environment:
@@ -31,6 +34,11 @@ services:
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    healthcheck:
+      test: "curl --fail --silent localhost:8080/actuator/health | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
       - 8080:8080
 

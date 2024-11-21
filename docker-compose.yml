@@ -1,4 +1,15 @@
 services:
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+      target: runtime
+    image: frontend:0.1.0
+    links:
+      - bff
+    ports:
+      - 3000:3000
+
   bff:
     build:
       context: services/bff

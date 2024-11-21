@@ -1,4 +1,22 @@
 services:
+  api:
+    build:
+      context: services/api
+      dockerfile: Dockerfile
+      target: runtime
+    depends_on:
+      mysql:
+        condition: service_healthy
+    links:
+      - mysql
+    environment:
+      - DB_URL=${DB_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    ports:
+      - 8080:8080
+
   mysql:
     image: mysql:9.1-oraclelinux9
     environment:

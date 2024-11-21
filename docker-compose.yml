@@ -4,6 +4,7 @@ services:
       context: services/api
       dockerfile: Dockerfile
       target: runtime
+    image: java-backend-api:1.0.0
     depends_on:
       mysql:
         condition: service_healthy

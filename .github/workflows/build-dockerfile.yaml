@@ -2,7 +2,7 @@ name: Build and Push Docker image
 
 on:
   release:
-    types: [published]
+    types: [published, edited]
 
 jobs:
   push_to_registry:

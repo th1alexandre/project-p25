@@ -33,22 +33,18 @@ spec:
                 secretKeyRef:
                   name: backend-secrets
                   key: DB_URL
-                  namespace: backend
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: backend-secrets
                   key: DB_USERNAME
-                  namespace: backend
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: backend-secrets
                   key: DB_PASSWORD
-                  namespace: backend
             - name: JWT_SECRET_KEY
               valueFrom:
                 secretKeyRef:
                   name: backend-secrets
                   key: JWT_SECRET_KEY
-                  namespace: backend

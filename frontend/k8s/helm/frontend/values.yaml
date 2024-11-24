@@ -17,9 +17,6 @@ resources:
     cpu: "200m"
     memory: "128Mi"
 
-env:
-  BFF_URL: https://bff.p25.thialexandre.uk
-
 service:
   type: ClusterIP
   port: 80

@@ -208,7 +208,7 @@ func main() {
 
 	apiUrl := os.Getenv("API_URL")
 	if apiUrl == "" {
-		apiUrl = "http://localhost:8080" // Default port if not specified
+		apiUrl = "https://backend.p25.th1alexandre.uk" // Default port if not specified
 	}
 
 	clientId := os.Getenv("CLIENT_ID")

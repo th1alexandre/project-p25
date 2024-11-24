@@ -24,7 +24,7 @@ function App() {
   const [installments, setInstallments] = useState([]);
 
   const loadRates = () => {
-    fetch('http://localhost:8085/api/loans')
+    fetch('https://bff.p25.th1alexandre.uk/api/loans')
       .then((response) => response.json())
       .then((json) => {
         setListLoans(json.data);
@@ -32,7 +32,7 @@ function App() {
   };
 
   const loadAvailableRates = () => {
-    fetch('http://localhost:8085/api/rates')
+    fetch('https://bff.p25.th1alexandre.uk/api/rates')
       .then((response) => response.json())
       .then((json) => {
         setAvailableRates(json.data);
@@ -59,7 +59,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('http://localhost:8085/api/loans', {
+    fetch('https://bff.p25.th1alexandre.uk/api/loans', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

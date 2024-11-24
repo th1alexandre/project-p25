@@ -4,6 +4,8 @@ services:
       context: frontend
       dockerfile: Dockerfile
       target: runtime
+      args:
+        - REACT_APP_BFF_URL=${REACT_APP_BFF_URL}
     image: frontend:0.1.0
     links:
       - bff

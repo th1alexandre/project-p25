@@ -23,10 +23,10 @@ function App() {
   const [selectedLoan, setSelectedLoan] = useState(null);
   const [installments, setInstallments] = useState([]);
 
-  const BFF_BASE_URL = process.env.BFF_URL;
+  const REACT_APP_BFF_URL = process.env.REACT_APP_BFF_URL;
 
   const loadRates = () => {
-    fetch(`${BFF_BASE_URL}/api/loans`)
+    fetch(`${REACT_APP_BFF_URL}/api/loans`)
       .then((response) => response.json())
       .then((json) => {
         setListLoans(json.data);
@@ -34,7 +34,7 @@ function App() {
   };
 
   const loadAvailableRates = () => {
-    fetch(`${BFF_BASE_URL}/api/rates`)
+    fetch(`${REACT_APP_BFF_URL}/api/rates`)
       .then((response) => response.json())
       .then((json) => {
         setAvailableRates(json.data);
@@ -61,7 +61,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${BFF_BASE_URL}/api/loans`, {
+    fetch(`${REACT_APP_BFF_URL}/api/loans`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

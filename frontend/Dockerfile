@@ -1,6 +1,9 @@
 # Stage 1: Build the React application
 FROM node:20 AS builder
 
+# Set build time required environment variables
+ARG REACT_APP_BFF_URL
+
 # Create a non-root user for running the application
 RUN useradd -u 1001 nonroot
 

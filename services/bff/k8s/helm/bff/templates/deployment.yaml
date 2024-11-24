@@ -27,3 +27,28 @@ spec:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
               memory: {{ .Values.resources.limits.memory }}
+          env:
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: bff-secrets
+                  key: PORT
+                  namespace: bff
+            - name: API_URL
+              valueFrom:
+                secretKeyRef:
+                  name: bff-secrets
+                  key: API_URL
+                  namespace: bff
+            - name: CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: bff-secrets
+                  key: CLIENT_ID
+                  namespace: bff
+            - name: CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bff-secrets
+                  key: CLIENT_SECRET
+                  namespace: bff

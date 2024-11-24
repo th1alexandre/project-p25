@@ -1,0 +1,20 @@
+apiVersion: v2
+name: bff
+description: A Helm chart for deploying the bff application
+
+type: application
+
+# Increment this version whenever the Helm chart is updated.
+version: 0.1.0
+
+# Specify the version of the application being deployed. 
+# Match this with the application's release version or Docker tag.
+appVersion: "latest"
+
+# Optional: Add maintainers, sources, or additional metadata.
+maintainers:
+  - name: Thiago Freire
+    email: th1alexandre.dev@protonmail.com
+
+sources:
+  - https://github.com/th1alexandre/project-p25/services/bff

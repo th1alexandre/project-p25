@@ -1,0 +1,33 @@
+namespace: frontend
+
+replicas: 2
+
+image:
+  repository: th1alexandre/frontend
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 3000
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "64Mi"
+  limits:
+    cpu: "200m"
+    memory: "128Mi"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  annotations:
+    clusterIssuer: cloudflare-issuer
+    rewriteTarget: /$1
+    useRegex: "true"
+  ingressClassName: nginx
+  host: frontend.p25.th1alexandre.uk
+  path: /(.*)
+  pathType: Static
+  tlsSecretName: frontend-tls

@@ -1,0 +1,33 @@
+namespace: bff
+
+replicas: 2
+
+image:
+  repository: th1alexandre/bff
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 8085
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "64Mi"
+  limits:
+    cpu: "200m"
+    memory: "128Mi"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  annotations:
+    clusterIssuer: cloudflare-issuer
+    rewriteTarget: /$1
+    useRegex: "true"
+  ingressClassName: nginx
+  host: bff.p25.th1alexandre.uk
+  path: /(.*)
+  pathType: Static
+  tlsSecretName: bff-tls

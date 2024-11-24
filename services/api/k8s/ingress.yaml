@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-ingress
+  namespace: backend
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-issuer
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: backend.p25.th1alexandre.uk
+    http:
+      paths:
+      - path: /(.*)
+        pathType: Exact
+        backend:
+          service:
+            name: backend-svc
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - backend.p25.th1alexandre.uk
+    secretName: backend-tls

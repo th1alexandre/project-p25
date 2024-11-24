@@ -1,8 +1,11 @@
 name: Build and Push Docker image
 
 on:
-  release:
-    types: [published, edited]
+  workflow_call:
+    secrets:
+      DOCKERHUB_USERNAME:
+      DOCKERHUB_PASSWORD:
+      DOCKERHUB_NAMESPACE:
 
 jobs:
   push_to_registry:

@@ -23,8 +23,10 @@ function App() {
   const [selectedLoan, setSelectedLoan] = useState(null);
   const [installments, setInstallments] = useState([]);
 
+  const BFF_BASE_URL = process.env.BFF_URL;
+
   const loadRates = () => {
-    fetch('https://bff.p25.th1alexandre.uk/api/loans')
+    fetch(`${BFF_BASE_URL}/api/loans`)
       .then((response) => response.json())
       .then((json) => {
         setListLoans(json.data);
@@ -32,7 +34,7 @@ function App() {
   };
 
   const loadAvailableRates = () => {
-    fetch('https://bff.p25.th1alexandre.uk/api/rates')
+    fetch(`${BFF_BASE_URL}/api/rates`)
       .then((response) => response.json())
       .then((json) => {
         setAvailableRates(json.data);
@@ -59,7 +61,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('https://bff.p25.th1alexandre.uk/api/loans', {
+    fetch(`${BFF_BASE_URL}/api/loans`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

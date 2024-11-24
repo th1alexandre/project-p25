@@ -29,5 +29,5 @@ ingress:
   ingressClassName: nginx
   host: frontend.p25.th1alexandre.uk
   path: /(.*)
-  pathType: Static
+  pathType: Exact
   tlsSecretName: frontend-tls

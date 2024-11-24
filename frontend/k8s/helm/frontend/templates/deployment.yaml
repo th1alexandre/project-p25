@@ -27,3 +27,6 @@ spec:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
               memory: {{ .Values.resources.limits.memory }}
+          env:
+            - name: BFF_URL
+              value: {{ .Values.env.BFF_URL }}

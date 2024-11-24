@@ -5,7 +5,7 @@ description: A Helm chart for deploying the frontend application
 type: application
 
 # Increment this version whenever the Helm chart is updated.
-version: 0.1.0
+version: 0.2.0
 
 # Specify the version of the application being deployed. 
 # Match this with the application's release version or Docker tag.

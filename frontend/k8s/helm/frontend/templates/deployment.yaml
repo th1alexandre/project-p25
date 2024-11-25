@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
   annotations:
     argocd-image-updater.argoproj.io/image-list: "{{ .Release.Name }}-container={{ .Values.image.repository }}:{{ .Values.image.tag }}"
+    argocd-image-updater.argoproj.io/{{ .Release.Name }}-container.update-strategy: newest-build
 spec:
   replicas: {{ .Values.replicas }}
   selector:

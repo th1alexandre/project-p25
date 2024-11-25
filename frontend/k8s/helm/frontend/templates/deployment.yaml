@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: "{{ .Release.Name }}-container={{ .Values.image.repository }}:{{ .Values.image.tag }}"
 spec:
   replicas: {{ .Values.replicas }}
   selector:

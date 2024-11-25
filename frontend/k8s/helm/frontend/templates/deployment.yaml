@@ -4,8 +4,12 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
   annotations:
-    argocd-image-updater.argoproj.io/image-list: "{{ .Release.Name }}={{ .Values.image.repository }}:{{ .Values.image.tag }}"
-    argocd-image-updater.argoproj.io/{{ .Release.Name }}.update-strategy: digest
+    # This annotation is for ArgoCD Image Updater to handle the image.
+    argocd-image-updater.argoproj.io/image-list: {{ .Release.Name }}={{ .Values.image.repository }}:{{ .Values.image.tag }}
+    # Update strategy set to latest. Change this based on your preferred strategy.
+    argocd-image-updater.argoproj.io/{{ .Release.Name }}.update-strategy: latest
+    # Force image update every time, regardless of the tag change.
+    argocd-image-updater.argoproj.io/{{ .Release.Name }}.force-update: 'true'
 spec:
   replicas: {{ .Values.replicas }}
   selector:
